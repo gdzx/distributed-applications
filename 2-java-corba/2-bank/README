@@ -1,0 +1,6 @@
+idlj -fall Echo.idl
+javac *.java
+
+tnameserv -ORBInitialPort 2810
+java EchoServer -ORBInitRef NameService=corbaloc::localhost:2810/NameService
+java EchoClient -ORBInitRef NameService=corbaloc::localhost:2810/NameService

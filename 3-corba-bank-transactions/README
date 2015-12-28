@@ -1,0 +1,12 @@
+# Compiling
+idlj -fall Banking.idl
+javac -d build *.java
+cd build
+
+# Tools
+orbd -ORBInitialPort 2810 -serverPollingTime 200
+servertool -ORBInitialPort 2810 // In `servertool`, `register -server InterBank -classpath .`
+
+# Main programs
+java Banks
+java Clients

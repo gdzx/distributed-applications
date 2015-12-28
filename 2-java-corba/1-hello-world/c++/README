@@ -1,0 +1,6 @@
+g++ -lomniORB4 -lomnithread EchoSK.cc  EchoServer.cpp -o EchoServer
+g++ -lomniORB4 -lomnithread EchoSK.cc  EchoClient.cpp -o EchoClient
+
+omniNames -start 2810
+./EchoServer -ORBInitRef NameService=corbaloc:iiop:localhost:2810/NameService
+./EchoClient -ORBInitRef NameService=corbaloc:iiop:localhost:2810/NameService

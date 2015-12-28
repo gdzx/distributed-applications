@@ -1,0 +1,36 @@
+module Banking {
+  typedef string Address;
+
+  struct Transaction {
+    Address sender;
+    Address recipient;
+    long amount;
+  };
+
+  typedef sequence<Transaction> TransactionChain;
+
+  interface Account {
+    void deposit(in unsigned long amount);
+    void withdraw(in unsigned long amount);
+    void order(in Address recipient, in unsigned long amount);
+    long balance();
+    readonly attribute Address address;
+  };
+
+  interface BankCustomer {
+    Account create();
+    void destroy(in Account a);
+  };
+
+  interface BankTransaction {
+    void deposit(in Address account, in unsigned long amount);
+    void withdraw(in Address account, in unsigned long amount);
+    readonly attribute string name;
+  };
+
+  interface InterBank {
+    void transaction(in Transaction transaction);
+    void register(in BankTransaction bank);
+    TransactionChain transactions();
+  };
+};
